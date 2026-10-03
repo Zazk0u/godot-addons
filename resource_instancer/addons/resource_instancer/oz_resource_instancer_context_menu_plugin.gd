@@ -31,12 +31,12 @@ func _on_pressed_context_menu_item(
 		var script_path: String = all_script_paths[i]
 		
 		if ResourceLoader.exists(new_resource_path):
-			printerr("[Resource Instancer] %s already exist, skipping instantiation!" % [new_resource_path])
+			push_warning("[Resource Instancer] %s already exist, skipping instantiation!" % [new_resource_path])
 			continue
 		
 		var script: GDScript = load(script_path)
 		if script.is_abstract():
-			printerr("[Resource Instancer] Cannot instantiate resource from abstract script %s!" % [script_path])
+			push_warning("[Resource Instancer] Cannot instantiate resource from abstract script %s!" % [script_path])
 			continue
 		
 		var resource := script.new() as Resource
